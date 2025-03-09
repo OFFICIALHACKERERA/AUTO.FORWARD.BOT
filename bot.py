@@ -1,10 +1,17 @@
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, MessageHandler, filters, CallbackContext, CommandHandler
+from telethon import version  # Import version from Telethon to display it
 
 # Bot token from BotFather
 TOKEN = '7274292874:AAE_qc_1LcUIleztZMpOjKrxB_PAYt0o2aY'
 # Your personal chat ID to forward the messages
 CHAT_ID = '-1002217780167'
+
+UPIC = "https://envs.sh/_Cf.jpg"
+
+CAPTION = "ʜᴇʟʟᴏ ɪ ᴀᴍ ʏᴏᴜʀ ꜰᴏʀᴡᴀʀᴅɪɴɢ ʙᴏᴛ.\nɪ ᴡɪʟʟ ꜰᴏʀᴡᴀʀᴅ ᴍᴇꜱꜱᴀɢᴇꜱ ꜰʀᴏᴍ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ʏᴏᴜʀ ᴘᴇʀꜱᴏɴᴀʟ ᴄʜᴀᴛ.\n\n"
+CAPTION += f"ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴏꜰꜰɪᴄɪᴀʟ ʜᴀᴄᴋᴇʀ\n\n"
+
 
 # This function will forward the messages from the channel to your personal chat
 async def forward_post(update: Update, context: CallbackContext):
@@ -24,7 +31,20 @@ async def forward_post(update: Update, context: CallbackContext):
 
 # This function will send a message when the user sends /start command
 async def start(update: Update, context: CallbackContext):
-    await update.effective_message.reply_text("Hello! I am your forwarding bot. I will forward messages from the channel to your personal chat.\n\n ©️ᴘᴏᴡᴇʀᴇᴅ ʙʏ : ᴏꜰꜰɪᴄɪᴀʟ ʜᴀᴄᴋᴇʀ")
+    keyboard = [
+        [
+            InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url="https://t.me/Broken_Heart_72"),
+            InlineKeyboardButton("ᴏᴡɴᴇʀ", url="https://t.me/raoxc"),
+        ],
+
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    await update.effective_message.reply_photo(
+        photo=UPIC,
+        caption=CAPTION,
+        reply_markup=reply_markup
+    )
 
 def main():
     # Initialize the Application with the provided token
